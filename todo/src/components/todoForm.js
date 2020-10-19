@@ -1,7 +1,7 @@
-import React from "react";
-import todoReducer from "../reducers/todoReducer";
+import React,{useState} from "react";
+// import {initialState, todoReducer} from "../reducers/todoReducer";
 
-const todoForm = () => {
+const TodoForm = (props) => {
     const [newTodoTask, setNewTodoTask] = useState("");
 
     const handleChanges = e => {
@@ -10,13 +10,15 @@ const todoForm = () => {
 
     const formSubmit = e => {
         e.preventDefault();
+        props.dispatch({type : "ADD_TODO", payload: newTodoTask});
+        setNewTodoTask("");
     }
 
     return(
         <form onSubmit = {formSubmit}>
             <input 
             type = "text"
-            name = "todo"
+            name = "item"
             onChange = {handleChanges}
             value = {newTodoTask}
             />
@@ -24,3 +26,6 @@ const todoForm = () => {
         </form>
     )
 }
+
+
+export default TodoForm;

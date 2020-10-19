@@ -1,7 +1,3 @@
-export const todoReducer = (state, action) => {
-    return state;
-}
-
 export const initialState = {
     todoData: [
     {
@@ -11,6 +7,47 @@ export const initialState = {
     }
 ]
 };
+
+export const todoReducer = (state, action) => {
+    switch(action.type){
+        case "ADD_TODO" :
+            return {
+                ...state,
+                todoData: [...state.todoData, {
+                    item: action.payload,
+                    completed: false,
+                    id : Date.now()
+                }]
+            };
+        case "TOGGLE_TODO" :
+            return{
+                ...state,
+                todoData : state.todoData.map((todo) => {
+                    // todo.id === action.payload ? {...todo, completed: !completed} : todo; 
+                    if(todo.id === action.payload) {
+                        return {...todo, completed : !todo.completed};
+                    }else {
+                        return todo;
+                    }
+                    // if (todo.id === action.payload) {
+                    //     return {...todo, completed: !todo.completed};
+                    // } else {
+                    //     return todo;
+                    // }
+                })
+            }
+        case "CLEAR_COMPLETED" : 
+        return{
+            ...state, 
+            todoData : state.todoData.filter(todo => 
+                !todo.completed
+            )
+        }
+        default:
+        return state;
+    }
+};
+
 
 // if else = better for logics 
 // switch = cant use ors give expressions 
