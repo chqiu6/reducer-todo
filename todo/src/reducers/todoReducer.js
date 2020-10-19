@@ -29,11 +29,6 @@ export const todoReducer = (state, action) => {
                     }else {
                         return todo;
                     }
-                    // if (todo.id === action.payload) {
-                    //     return {...todo, completed: !todo.completed};
-                    // } else {
-                    //     return todo;
-                    // }
                 })
             }
         case "CLEAR_COMPLETED" : 
@@ -49,5 +44,3 @@ export const todoReducer = (state, action) => {
 };
 
 
-// if else = better for logics 
-// switch = cant use ors give expressions 

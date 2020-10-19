@@ -8,7 +8,6 @@ const Todo = props => {
         className={`todo${props.todo.completed ? ' completed' : ''}`}
         >
             <p>{props.todo.item}</p>
-            {/* <p>{props.todo.id}</p> */}
         </div>
     )
 }
